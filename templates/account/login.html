@@ -1,0 +1,41 @@
+{% extends 'nav.html' %}
+{%load static%}
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+<body>
+	{% block content %}
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
+		<link rel="stylesheet" href="{% static "css/login.css" %}" />
+	</head>
+
+	<body>
+		<div class="form">
+			<form action="" method="POST">
+				{% csrf_token %}
+				<h2>Login</h2>
+				<div class="icons">
+					<a href="{% provider_login_url "facebook" method="oauth2" %}"><i class="fab fa-facebook"></i></a>
+					<a href="{% provider_login_url "google" method="oauth2" %}"><i class="fab fa-google"></i></a>
+				</div>
+
+				<input type="text" name="username" placeholder="username" />
+				<input type="password" name="password" placeholder="password" />
+
+				<button type="submit" name="button">Login</button>
+
+				<p class="option"> Not Registered? <a href="{% url 'account_signup' %}"> Create an account</a></p>
+
+			</form>
+
+		</div>
+
+	</body>
+
+
+	{% endblock %}

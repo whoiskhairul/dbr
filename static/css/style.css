@@ -1,0 +1,29 @@
+.link { 
+    color: green;; } /* CSS link color (red) */
+
+.link:hover { color:red;text-decoration: none;}
+
+.link2 { 
+    color: #0377fc; } /* CSS link color (red) */
+
+.link:hover { color:red;text-decoration: none;}
+
+#route{
+    text-align: center;
+    width: 400px;
+    margin-top: 30px; 
+    padding: 20PX;
+    margin-left: 1.72in;
+}
+
+#res{
+    padding: 30px;
+    text-align: center;
+    margin-left: 1.72in;
+    width: 400px;
+}
+.map{
+    margin-top: 710px;
+    width: 400px; 
+    margin-left: 0px;
+} 

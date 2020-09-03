@@ -1,0 +1,38 @@
+{% extends 'nav.html' %}
+{%load static%}
+<body>
+{% block content %}
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
+	<link rel="stylesheet" href="{% static "css/login.css" %}" />
+</head>
+<body>
+	<div class="form"> 
+		<form action="" method="post">
+			{% csrf_token %}
+			<h2>Login</h2>
+			<div class="icons"> 
+				<a href="#"><i class="fab fa-facebook"></i></a>
+				<a href="#"><i class="fab fa-twitter"></i></a>
+				<a href="#"><i class="fab fa-google"></i></a>
+			</div>
+			
+			<input type="text" name="username" placeholder="username" />
+			<input type="password" name="password" placeholder="password" />
+			
+			<button type="submit" name="button">Login</button>
+			
+			<p class="option"> Not Registered? <a href="#"> Create an account</a></p>
+		
+		</form>
+		
+	</div>
+	
+</body>
+
+
+{% endblock %}
+

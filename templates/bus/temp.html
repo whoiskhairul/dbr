@@ -1,0 +1,160 @@
+{% extends 'nav.html' %}
+
+{% load static %}
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+</head>
+
+{% block content %}
+
+<div class="container" style="padding-top: 5%;padding-bottom: 10%;">
+  <div class="row">
+    <div class="col-sm-8" style="margin-left: auto; margin-right: auto;">
+
+      <FORM method="POST"><br><br>
+        {% csrf_token %}
+      
+        <table width="400" cellpadding="1" bgcolor="#7ac476" align="center">
+      
+          <td>
+      
+            <table width="100%" cellpadding="12" bgcolor="#7ac476">
+      
+              <tr>
+      
+                <td colspan="4" bgcolor="#7ac476" align="center">
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="4">
+                    <b>
+                      <h2 style="padding-top: 15px;">Dhaka City Bus Route</h2>
+                    </b>
+                  </font>
+                </td>
+      
+              </tr>
+      
+              <Tr>
+      
+                <Td bgcolor="#ffffff" align="left">
+                  <font face="Verdana" size="4">
+                    <B>From</B>
+                  </font>
+                </Td>
+      
+                <Td bgcolor="#ffffff" align="right">
+      
+                  <input list="stoppage" name="source" placeholder="Your Location" >
+                  <datalist id="stoppage">
+                    {% for key,value in bus_stoppage_list.items %}
+                    <option value="{{ value }}">{{ value }}</option>
+                    {% endfor %}
+                  </datalist>
+      
+                </Td>
+      
+              </Tr>
+      
+              <Tr>
+                <Td bgcolor="#ffffff" align="left">
+                  <font face="Verdana" size="4">
+                    <B>To</B>
+                  </font>
+                </Td>
+      
+                <Td bgcolor="#ffffff" align="right">
+      
+                  <input list="stoppage" name="destination" placeholder="Your Destination" required>
+                  <datalist id="stoppage">
+                    {% for key,value in bus_stoppage_list.items %}
+                    <option value="{{ value }}">{{ value }}</option>
+                    {% endfor %}
+                  </datalist>
+              </Tr>
+      
+              <Tr>
+                <Td bgcolor="#ffffff" align="right"></Td>
+                <Td bgcolor="#ffffff" align="right">
+                  <INPUT style="background-color: #4CAF50;border: none;color: white;padding: 10px 25px;font-size: 17px;"
+                    Type="Submit" Name="Submit" Value="Find Bus">
+                </Td>
+              </Tr>
+            </table>
+          </Td>
+        </table>
+      </FORM>
+
+
+      {% if context %}
+      <div class="jumbotron" id='route'>
+        <h4>Approximate Route map</h4>
+      </div>
+
+      <div class="map">
+        {% with c as x %}
+        {% include 'map/c_map.html' %}
+        {% endwith %}
+      </div>
+
+      
+      {% endif %}
+      
+      {% if res %}
+        <div class="jumbotron" id="res">
+          <h5>Restaurants in</h5>
+          <h4>{{ dest }}</h4>
+        </div>
+        {% with res as res %}
+          {% include 'partial/restaurant.html' %}
+        {% endwith %}
+      {% endif %}
+        
+
+
+
+
+    </div>
+
+    <div class="col-sm-4" style="padding-top: 50px;">
+      <div>
+
+
+
+        {% if messages %}
+        <div class="jumbotron text-center">
+          <center class="messages">
+            {% for message in messages %}
+            <font size=04 color=#c7182f><b>{{ message }}</b></font>
+            <br>
+            {% endfor %}
+          </center>
+        </div>
+        <br>
+        {% endif %}
+
+        {% if context %}
+        <div class="jumbotron text-center" style="padding: 30px;">
+          <h4>Available Buses</h4>
+        </div>
+        {% for key,value in context.items %}
+        <hr>
+        <center>
+          <b>
+            <h3>
+              <a class="link" style="padding: 15px 32px;display: inline-block;font-size: 16px; text-decoration:none ;"
+                href="bus/{{key}}">{{ value }}</a>
+            </h3>
+          </b>
+        </center>
+        {% endfor %}
+        {% endif %}
+
+
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+</HTML>

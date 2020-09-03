@@ -1,0 +1,93 @@
+{% extends 'nav.html' %}
+
+{% load static %}
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+</head>
+
+{% block content %}
+
+
+<FORM method="POST"><br><br>
+  {% csrf_token %}
+
+  <table width="400" cellpadding="1" bgcolor="#7ac476" align="center">
+
+    <td>
+
+      <table width="100%" cellpadding="12" bgcolor="#7ac476">
+
+        <tr>
+
+          <td colspan="4" bgcolor="#7ac476" align="center">
+            <font face="Verdana, Arial, Helvetica, sans-serif" size="4">
+              <b>
+                <h2 style="padding-top: 15px;">Dhaka City Bus Route</h2>
+              </b>
+            </font>
+          </td>
+
+        </tr>
+        <tr>
+
+          <td colspan="4" bgcolor="white" align="center">
+            <font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+              <b>
+                <h2 style="padding-top: 15px;">All Bus List</h2>
+              </b>
+            </font>
+          </td>
+
+        </tr>
+      </table>
+    </Td>
+
+  </table>
+</FORM>
+
+
+<table width="400" bgcolor="#7ac476" border="0" align="center" style="border-color: #4CAF50;">
+  <tr>
+    <td>
+      <table width="100%" bgcolor="#7ac476" style="padding:100%">
+        <tr>
+          <td colspan="4" bgcolor="#7ac476" align="center">
+            <font face="Verdana" size="4">
+          </td>
+        </tr>
+
+        <Td bgcolor="white" align="right">
+
+          {% for key,value in bus_list.items %}
+          {% if forloop.counter0|divisibleby:'2' %}
+          <center>
+            <h6>
+
+              <a class="link"
+                style="background-color: rgb(226, 226, 226); width: 100%; padding: 15px 32px;display: inline-block;font-size: 16px; text-decoration:none ;"
+                href="{{key}}"> {{ value }}</a>
+
+            </h6>
+          </center>
+          {% else %}
+          <center>
+            <h6>
+              <a class="link"
+                style=" background-color:white; width: 100%; padding: 15px 32px;display: inline-block;font-size: 16px; text-decoration:none ;"
+                href="{{key}}"> {{ value }}</a>
+            </h6>
+          </center>
+          {% endif %}
+          {% endfor %}
+
+        </Td>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<section style="padding: 100px;"></section>
+{% endblock %}
+
+</HTML>

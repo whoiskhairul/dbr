@@ -1,0 +1,61 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container" style="padding-top: 10%;padding-bottom: 10%;">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="jumbotron">
+                <center>
+                    <h4>Image of the bus</h4>
+                </center>
+
+            </div>
+            <img src={{image.bus_image.url}} alt="can't find image."
+                style="width: 100%;height: 250px;padding-bottom: 20px;">
+            <hr>
+
+
+        </div>
+        <div class="col-sm-4">
+            <div class="jumbotron">
+                <center>STOPPAGE LIST <p>OF</p>
+                </center>
+                <center>
+                    <h3>{{bus_name}}</h3>
+                </center>
+            </div>
+            <div>
+
+                {% for key,value in context.items %}
+                {% if forloop.counter|divisibleby:'2' %}
+                <center style="background-color: rgb(255, 255, 255); width: 100%;height: 35px;font-size:18px;">{{value}}
+                </center>
+                {% else %}
+                <center style="background-color: rgb(226, 226, 226); width: 100%;height: 35px; font-size: 18px;">
+                    {{value}} </center>
+                {% endif %}
+                {% endfor %}
+                <hr>
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="jumbotron">
+                <center>
+                    <h4>Map of the route</h4>
+                </center>
+            </div>
+            <div style="margin-top: 500px;width: 500px;">
+
+                {% with x as x %}
+                {% include 'map/map.html' %}
+                {% endwith %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

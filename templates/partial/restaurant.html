@@ -1,0 +1,9 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+</head>
+
+    {% for res in res %}
+        <h6 class="text-center"> <a href="restaurant/{{res.id}}">{{ res }}</a></h6>
+    {% endfor %}
+    

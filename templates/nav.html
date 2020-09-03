@@ -1,0 +1,129 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Dhaka Bus Route,Find bus on your desired route. </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dhakabusroute.herokuapp.com is a website where the route information of Dhaka is stored,you can find bus/route information from here.
+  ">
+  <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+  <link rel="icon" href="https://image.flaticon.com/icons/png/512/2636/2636346.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="canonical" href="https://dhakabusroute.herokuapp.com/" />
+  <link rel="alternate" hreflang="en" href="https://www.example.com" />
+</head>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'index' %}" style="margin-bottom: 10px;">
+    <font color="green" size='5'>Dhaka <font color="red">Bus</font> Route</font>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'bus_list' %}"><b class="link2">All Bus</b> <span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}"><b class="link2">My Blog</b></a>
+      </li>
+      <li class="nav-item" style="margin-left: 6.5in; ">
+        <a class="nav-link">
+          <b>
+            {% if user.username %}
+              Welcome here, {{user.username}}!
+            {% endif %}
+          </b>
+        </a>
+      </li>
+
+    </ul>
+    <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+
+    {% if user.is_authenticated %}
+    <i class="fa fa-user" style="font-size: 25px; padding-bottom: 10px;">&nbsp&nbsp&nbsp</i>
+    <a href="{% url 'account_logout' %}" class="link">
+      <h6>Logout</h6></b>
+    </a>
+    {% else %}
+    <a href="{% url 'account_login' %}" class="link">
+      <h6>Login/Sign up</h6></b>
+    </a>
+    {% endif %}
+
+  </div>
+</nav>
+
+<body>
+  {% block content %}
+  {% endblock %}
+</body>
+
+
+<!-- Site footer -->
+<!-- <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify">Dhakabusroute.herokuapp.com <i> is a website where the route information of Dhaka is stored.Here we can find the desired route to go from one place to another.The most important feature here is We can get available buses from one place to other.Hope we all will enjoy this website very much.Thank you. </i> </p>
+        </div> -->
+
+<!-- <div class="col-xs-6 col-md-3">
+          <h6>Categories</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+            <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+            <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+            <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+            <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+            <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+          </ul>
+        </div> -->
+
+<!-- <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/about/">About Us</a></li>
+            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+          </ul>
+        </div> -->
+<!-- </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+       <a href="https://www.facebook.com/whoiskhairul"><ssection class="myname">Khairul Islam</section></a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="https://www.facebook.com/whoiskhairul"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twitter" href="https://github.com/whoiskhairul"><i class="fa fa-github"></i></a></li>
+            <li><a class="linkedin" href="https://www.linkedin.com/in/whoiskhairul/"><i class="fa fa-linkedin"></i></a></li>   
+          </ul>
+        </div>
+      </div>
+    </div>
+</footer> -->
+
+</HTML>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Add a GeoJSON line</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; height: 600px; width: 400px; margin-top: 420px; margin-left: 1.72in;}
+    @media only screen and (max-width: 600px) {
+        #map {
+            margin-top: 420px;
+            margin-left: auto;
+        }
+
+    }
+</style>
+</head>
+<body>
+    <div id="map"></div>
+<script>
+    var x = [{{x}}];
+    console.log(x);
+    
+	mapboxgl.accessToken = 'pk.eyJ1Ijoid2hvaXNraGFpcnVsIiwiYSI6ImNrOHgxOGFhbTB0NDQzZ282eGw4bnczZHMifQ.YxAa3xH6abRfF60Z5bKm-w';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [90.406, 23.766],
+        zoom: 11
+    });
+    var x = {{x}}
+    theCoords = {
+    "type": "LineString",
+    "coordinates": x		
+};
+
+    map.on('load', function() {
+        map.addSource('route', {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'properties': {},
+                'geometry': theCoords
+            }
+        });
+        map.addLayer({
+            'id': 'route',
+            'type': 'line',
+            'source': 'route',
+            'layout': {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            'paint': {
+                'line-color': '#ff0008',
+                'line-width': 2
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

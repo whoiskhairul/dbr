@@ -1,0 +1,128 @@
+{% extends 'nav.html' %}
+
+{% load static %}
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+</head>
+
+{% block content %}
+
+
+<FORM method="POST"><br><br>
+  {% csrf_token %}
+
+  <table width="400" cellpadding="1" bgcolor="#7ac476" align="center">
+
+    <td>
+
+      <table width="100%" cellpadding="12" bgcolor="#7ac476">
+
+        <tr>
+
+          <td colspan="4" bgcolor="#7ac476" align="center">
+            <font face="Verdana, Arial, Helvetica, sans-serif" size="4">
+              <b>
+                <h2 style="padding-top: 15px;">Dhaka City Bus Route</h2>
+              </b>
+            </font>
+          </td>
+
+        </tr>
+
+        <Tr>
+
+          <Td bgcolor="#ffffff" align="left">
+            <font face="Verdana" size="4">
+              <B>From</B>
+            </font>
+          </Td>
+
+          <Td bgcolor="#ffffff" align="right">
+
+            <input list="stoppage" name="source" placeholder="Your Location" required >
+            <datalist id="stoppage">
+              {% for key,value in bus_stoppage_list.items %}
+              <option value="{{ value }}">{{ value }}</option>
+              {% endfor %}
+            </datalist>
+
+          </Td>
+
+        </Tr>
+
+        <Tr>
+          <Td bgcolor="#ffffff" align="left">
+            <font face="Verdana" size="4">
+              <B>To</B>
+            </font>
+          </Td>
+
+          <Td bgcolor="#ffffff" align="right">
+
+            <input list="stoppage" name="destination" placeholder="Your Destination" required>
+            <datalist id="stoppage">
+              {% for key,value in bus_stoppage_list.items %}
+              <option value="{{ value }}">{{ value }}</option>
+              {% endfor %}
+            </datalist>
+        </Tr>
+
+        <Tr>
+          <Td bgcolor="#ffffff" align="right"></Td>
+          <Td bgcolor="#ffffff" align="right">
+            <INPUT style="background-color: #4CAF50;border: none;color: white;padding: 10px 25px;font-size: 17px;"
+              Type="Submit" Name="Submit" Value="Find Bus">
+          </Td>
+        </Tr>
+      </table>
+    </Td>
+  </table>
+</FORM>
+
+
+<table width="400" bgcolor="#7ac476" border="0" align="center" style="border-color: #4CAF50;">
+  <tr>
+    <td>
+      <table width="100%" bgcolor="#7ac476" style="padding:100%">
+        <tr>
+          <td colspan="4" bgcolor="#7ac476" align="center">
+            <font face="Verdana" size="4">
+          </td>
+        </tr>
+
+        <Td bgcolor="white" align="right">
+
+          {% if messages %}
+          <br>
+          <center class="messages">
+            {% for message in messages %}
+            <font size=04 color=#c7182f><b>{{ message }}</b></font>
+            <br>
+            {% endfor %}
+          </center>
+          <br>
+          {% endif %}
+
+          {% for key,value in context.items %}
+          <hr>
+          <center>
+            <b>
+              <h3>
+                <a class="link" style="padding: 15px 32px;display: inline-block;font-size: 16px; text-decoration:none ;"
+                  href="{{key}}">{{ value }}</a>
+              </h3>
+            </b>
+          </center>
+          {% endfor %}
+
+        </Td>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<section style="padding: 100px;"></section>
+{% endblock %}
+
+</HTML>

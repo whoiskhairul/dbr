@@ -1,0 +1,10 @@
+{% include 'nav.html' %}
+<div class="container my-5">
+    <div class="jumbotron text-center">
+        <h3>{{res.restaurant_name}}</h3>
+        <h6>Location: {{ res.restaurant_location }}</h6>
+    </div>
+    <div style="text-align: center;">
+        {{embed|safe}}
+    </div>
+</div>
